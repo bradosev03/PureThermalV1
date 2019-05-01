@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 import sys
@@ -6,7 +6,7 @@ from argparse import ArgumentParser
 import threading
 from time import gmtime, strftime
 
-try: 
+try:
     import cv2
 except ImportError as e:
     print "[!] Import Error, please install python-opencv"
@@ -29,7 +29,7 @@ class CameraCapture(threading.Thread):
 def findCameras():
     cameras = []
     for i in reversed(range(10)):
-        sys.stdout.write("\r[~]Testing for a camera #{0}".format(i)) 
+        sys.stdout.write("\r[~]Testing for a camera #{0}".format(i))
         sys.stdout.flush()
         try:
             cv2_cap = cv2.VideoCapture(i)
@@ -66,7 +66,7 @@ def capture(ID,windowName):
         key = cv2.waitKey(20)
         if key == 27:
             break;
-        
+
 
 def parse_options():
     parser = ArgumentParser(description="Capture Data From Multiple Cameras and store to your system")
@@ -78,7 +78,7 @@ def parse_options():
 def main():
     args = parse_options()
     print args
-    cameras = findCameras() 
+    cameras = findCameras()
     threads = []
     for camera in cameras:
         threads.append(CameraCapture(camera,args["verbose"],args["display"]))
