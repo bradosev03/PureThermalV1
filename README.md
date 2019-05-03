@@ -40,6 +40,10 @@ $ crontab -l
 ```
 This will create a startup script for when the raspberry pi reboots.
 
+## Example Outputs:
+[][./examples/example1.jpeg]
+[][./examples/example2.jpeg]
+
 ## Known Issues:
   > C++ Wrapper STDERR: Warnings from the underlying C++ library will output to STDOUT. There is a known fix to this problem, however it involves recompiling the opencv library with proper STDOUT,STDERR hooks for python. 
   

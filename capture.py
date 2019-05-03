@@ -91,7 +91,7 @@ def main():
     if not os.path.exists(homepath):
         os.makedirs(homepath)
     args = parse_options()
-    print args
+    #print args
     cameras = findCameras()
     threads = []
     for camera in cameras:
