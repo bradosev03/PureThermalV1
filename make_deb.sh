@@ -10,13 +10,13 @@ debname="${name}_${version}.deb"
 
 cd ..;
 mkdir -p "${appName}/${folder}";
-mkdir -p "${appName}/${folder}/usr/bin/";
+mkdir -p "${appName}/usr/bin/";
 
 cat <<EOF >"${appName}/${folder}/control"
 Package: ${name}
 Version: ${version}
 Maintainer: bradosev03
-Artchitecture: all
+Architecture: all
 Depends: python, python-opencv, autotools-dev, autoconf, build-essential, libv4l-dev, v4l-utils
 Description: thermalpi
   A Simple program written in Python2.7 that is used to capture 
@@ -29,7 +29,10 @@ Description: thermalpi
   ~/thermalpi/images.
 EOF
 
-cp "${dir}/capture.py" "${appName}/${folder}/usr/bin/thermalpi"
-chmod +x "${appName}/${folder}/usr/bin/thermalpi";
+cp "${dir}/capture.py" "${appName}/usr/bin/thermalpi"
+chmod +x "${appName}/usr/bin/thermalpi";
 
 echo "Creating Debian File: ${debname}";
+
+dpkg-deb -b ${appName} ${debname};
+rm -rf ${appName};
