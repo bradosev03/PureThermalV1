@@ -32,8 +32,8 @@ class CameraCapture(threading.Thread):
 def findCameras():
     cameras = []
     for i in reversed(range(10)):
-        #sys.stdout.write("\r[~]Testing for a camera #{0}".format(i))
-        #sys.stdout.flush()
+        sys.stdout.write("\r[~]Testing for a camera #{0}".format(i))
+        sys.stdout.flush()
         try:
             cv2_cap = cv2.VideoCapture(i)
         except Error as e:
@@ -56,6 +56,9 @@ def capture_and_display(ID,windowName,filetype,parentpath):
     while rval:
         cv2.imshow(windowName, frame)
         rval, frame = cam.read()
+        filename = windowName + "_"+ strftime("%Y-%m-%d_%H:%M:%S", gmtime())+"."+filetype
+        path=parentpath + "/" + filename
+        cv2.imwrite(path, frame)
         key = cv2.waitKey(20)
         if key == 27:
             sys.exit(0)
